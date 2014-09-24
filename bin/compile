@@ -79,6 +79,11 @@ export PKG_CPPFLAGS=$CPPFLAGS
 export R_HOME=$R_BASE/lib64/R
 export R_INCLUDE=$R_HOME/include
 
+
+export LD_LIBRARY_PATH=/lib:/usr/lib:$R_HOME/lib64:$LD_LIBRARY_PATH
+ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
+
+
 # copy over environment
 mkdir -p $BUILD_DIR/.profile.d
 cp "$BUILDPACK_DIR/bin/r_environment.sh" $BUILD_DIR/.profile.d/r_environment.sh
@@ -100,7 +105,6 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
-ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
 echo "R $R_VERSION successfully installed" | indent
 
