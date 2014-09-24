@@ -100,6 +100,7 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
+export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:$LD_LIBRARY_PATH"
 ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
 echo "R $R_VERSION successfully installed" | indent
